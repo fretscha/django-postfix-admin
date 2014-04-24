@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block nav %}
+     <ul class="nav nav-list">
+        <li class="nav-header">action</li>
+        <li id="nav_add"><a href="{% url "domain_create_view" %}">add domain</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="row-fluid">
+        <div class="span12">
+            <h2>Mailbox</h2>
+        </div>
+        <div class="span12">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_table }}
+                <input type="submit" value="Save">
+            </form>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    $("#menu_mailbox").attr('class', 'active');
+{% endblock %}

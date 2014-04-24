@@ -1,0 +1,8 @@
+-e git+git://github.com/django/django.git@stable/1.7.x#egg=Django
+Unipath
+django-otp
+django-braces
+django-crispy-forms
+django-filter
+djangorestframework
+gunicorn

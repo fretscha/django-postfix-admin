@@ -1,0 +1,4 @@
+# Local development dependencies go here
+-r base.txt
+django-debug-toolbar==1.1
+ipython==2.0.0

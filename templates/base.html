@@ -1,0 +1,136 @@
+{% load staticfiles %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block meta %}
+    {% endblock meta %}
+    <title>{% block title %}Postfixadmin{% endblock title %}</title>
+    {% block css %}
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,600" type='text/css'>
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/bootstrap-theme.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}" >
+    {% endblock css %}
+</head>
+<body {% block body_attr %}{% endblock body_attr %}>
+{% block base_body %}
+<div id="screensaver">
+  <canvas id="canvas"></canvas>
+  <i class="fa fa-lock" id="screen_unlock"></i>
+</div>
+<div id="modalbox">
+  <div class="devoops-modal">
+    <div class="devoops-modal-header">
+      <div class="modal-header-name">
+        <span>Basic table</span>
+      </div>
+      <div class="box-icons">
+        <a class="close-link">
+          <i class="fa fa-times"></i>
+        </a>
+      </div>
+    </div>
+    <div class="devoops-modal-inner">
+    </div>
+    <div class="devoops-modal-bottom">
+    </div>
+  </div>
+</div>
+<header class="navbar">
+  <div class="container-fluid expanded-panel">
+    <div class="row">
+      <div id="logo" class="col-xs-12 col-sm-2">
+        <a href="index.html">PostfixAdmin</a>
+      </div>
+      <div id="top-panel" class="col-xs-12 col-sm-10">
+        <div class="row">
+          <div class="col-xs-8 col-sm-4">
+            <a href="#" class="show-sidebar">
+              <i class="fa fa-bars"></i>
+            </a>
+            <div id="search">
+              <input type="text" placeholder="search"/>
+              <i class="fa fa-search"></i>
+            </div>
+          </div>
+          <div class="col-xs-4 col-sm-8 top-panel-right">
+            <ul class="nav navbar-nav pull-right panel-menu">
+              <li class="hidden-xs">
+                <a href="{% static "index.html" %}" class="modal-link">
+                  <i class="fa fa-bell"></i>
+                  <span class="badge">7</span>
+                </a>
+              </li>
+              <li class="hidden-xs">
+                <div class="user-mini pull-right">
+                  <span>Admin</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<!--End Header-->
+<!--Start Container-->
+<div id="main" class="container-fluid">
+  <div class="row">
+    <div id="sidebar-left" class="col-xs-2 col-sm-2">
+      <ul class="nav main-menu">
+        <li class="active">
+          <a href="#" >
+            <i class="fa fa-list"></i>
+          <span class="hidden-xs">Domain</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+             <i class="fa fa-list"></i>
+             <span class="hidden-xs">Mailbox</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+             <i class="fa fa-list"></i>
+             <span class="hidden-xs">Alias</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+             <i class="fa fa-list"></i>
+             <span class="hidden-xs">Vacation</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+             <i class="fa fa-list"></i>
+             <span class="hidden-xs">Log</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--Start Content-->
+    <div id="content" class="col-xs-12 col-sm-10">
+      <div id="ajax-content"></div>
+    </div>
+    <!--End Content-->
+  </div>
+</div>
+<!--End Container-->
+{% endblock base_body %}
+{% block body_js %}
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="http://getbootstrap.com/docs-assets/js/html5shiv.js"></script>
+    <script src="http://getbootstrap.com/docs-assets/js/respond.min.js"></script>
+<![endif]-->
+<script src="{% static "js/jquery-2.1.0.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+{% endblock body_js %}
+</body>
+</html>
