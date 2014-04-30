@@ -3,13 +3,11 @@ from __future__ import absolute_import
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.views import generic
 
 from braces import views
 
-from .forms import RegistrationForm
 from .forms import LoginForm
 
 
@@ -20,16 +18,6 @@ class HomeView(generic.TemplateView,
 
     login_url = reverse_lazy('login')
     raise_exception = True
-
-class SignUpView(generic.CreateView,
-    views.AnonymousRequiredMixin,
-    views.FormValidMessageMixin
-):
-    form_class = RegistrationForm
-    model = User
-    template_name = 'accounts/signup.html'
-    success_url = reverse_lazy('home')
-    form_valid_message = 'Thank you for your registration. You will be notified by email when your account is activated.'
 
 
 class LoginView(generic.FormView):
