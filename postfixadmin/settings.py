@@ -22,6 +22,8 @@ TEMPLATE_DIRS = (
     BASE_DIR.child("templates"),
 )
 
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
@@ -45,7 +47,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
+    'debug_toolbar.apps.DebugToolbarConfig',
+    'django_extensions',
+    'braces',
+    'crispy_forms',
     'rest_framework',
     'pfa',
     'api',

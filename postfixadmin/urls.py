@@ -1,11 +1,22 @@
-from django.conf.urls import include, url
+from django.conf.urls import include
+from django.conf.urls import url
 from django.contrib import admin
 
+from .views import HomeView
+from .views import LoginView
+from .views import LogOutView
+from .views import SignUpView
+
 urlpatterns = [
-    # Examples:
-    # url(r'^$', 'postfixadmin.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
+    url('^$', HomeView.as_view(), name='home'),
+
+    url(r'^accounts/register/$', SignUpView.as_view(), name='signup'),
+    url(r'^accounts/login/$', LoginView.as_view(), name='login'),
+    url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
+
     url(r'^api/', include('api.urls')),
+
     url(r'^pfa/', include('pfa.urls')),
+
     url(r'^admin/', include(admin.site.urls)),
 ]
