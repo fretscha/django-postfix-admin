@@ -4,14 +4,6 @@
 {% block title %}Login | {{ block.super }}{% endblock %}
 
 {% block base_body %}
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-{% endif %}
-
 <div class="container-fluid">
     <div id="page-login" class="row">
         <div class="col-xs-12 col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
@@ -23,6 +15,13 @@
                     <div class="text-center">
                         <h3 class="page-header">Login</h3>
                     </div>
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li {% if message.tags %} class="alert alert-block alert-{{ message.tags }}" {% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
                     {% crispy form %}
                 </div>
             </div>
@@ -30,3 +29,5 @@
     </div>
 </div>
 {% endblock %}
+
+<div class="alert alert-block alert-danger"><ul><li>Please enter a correct username and password. Note that both fields may be case-sensitive.</li></ul></div>

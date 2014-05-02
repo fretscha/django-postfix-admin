@@ -88,31 +88,31 @@
     <div id="sidebar-left" class="col-xs-2 col-sm-2">
       <ul class="nav main-menu">
         <li id="menu_domain">
-          <a href="#" >
+          <a href="{% url 'pfa:domain:list' %}" >
             <i class="fa fa-list"></i>
           <span class="hidden-xs">Domain</span>
           </a>
         </li>
         <li id="menu_mailbox">
-          <a href="#">
+          <a href="{% url 'pfa:mailbox:list' %}">
              <i class="fa fa-list"></i>
              <span class="hidden-xs">Mailbox</span>
           </a>
         </li>
         <li id="menu_alias">
-          <a href="#">
+          <a href="{% url 'pfa:alias:list' %}">
              <i class="fa fa-list"></i>
              <span class="hidden-xs">Alias</span>
           </a>
         </li>
         <li id="menu_vacation">
-          <a href="#">
+          <a href="{% url 'pfa:vacation:list' %}">
              <i class="fa fa-list"></i>
              <span class="hidden-xs">Vacation</span>
           </a>
         </li>
         <li id="menu_log">
-          <a href="#">
+          <a href="{% url 'pfa:log:list' %}">
              <i class="fa fa-list"></i>
              <span class="hidden-xs">Log</span>
           </a>

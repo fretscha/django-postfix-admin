@@ -11,13 +11,10 @@ from braces import views
 from .forms import LoginForm
 
 
-class HomeView(generic.TemplateView,
-    views.LoginRequiredMixin
+class HomeView(views.LoginRequiredMixin,
+    generic.TemplateView
 ):
     template_name = 'home.html'
-
-    login_url = reverse_lazy('login')
-    raise_exception = True
 
 
 class LoginView(generic.FormView):
@@ -38,12 +35,12 @@ class LoginView(generic.FormView):
             return self.form_invalid(form)
 
 
-class LogOutView(generic.RedirectView,
-    views.LoginRequiredMixin,
-    views.MessageMixin
+class LogOutView(views.LoginRequiredMixin,
+    views.MessageMixin,
+    generic.RedirectView
+
 ):
-    url = reverse_lazy('home')
-    form_valid_message = ''
+    url = reverse_lazy('login')
 
     def get(self, request, *args, **kwargs):
         logout(request)
