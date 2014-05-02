@@ -13,10 +13,13 @@
 <div class="row">
     <div id="breadcrumb" class="col-xs-12">
         <ol class="breadcrumb">
-            <li><a href="{% url 'pfa:domain:list' %}">Domains</a></li>
+            <li><a href="{% url 'pfa:domain:list' %}">Domain</a></li>
+            <li><a href="{{ domain.get_absolute_url }}">{{ domain.domain }}</a></li>
         </ol>
     </div>
 </div>
+
+
 <div class="row">
     <div class="col-xs-12 col-sm-8">
         <div class="box">
@@ -52,7 +55,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                    {% for domain in object_list %}
                         <tr class="clickable_row">
                             <td><a href="{{ domain.get_absolute_url }}">{{ domain.domain }}</a></td>
                             <td>{{ domain.aliases | zero2unlimited }}</td>
@@ -62,7 +64,6 @@
                             <td>{{ domain.transport }}</td>
                             <td>{{ domain.backupmx }}</td>
                         </tr>
-                    {% endfor %}
                     </tbody>
                 </table>
             </div>

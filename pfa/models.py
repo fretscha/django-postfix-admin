@@ -20,6 +20,9 @@ class Domain(models.Model):
     def __unicode__(self):
         return "{0}".format(self.domain,)
 
+    def get_absolute_url(self):
+         return reverse('pfa:domain:detail', kwargs={'pk': self.pk})
+
     class Meta:
         db_table = 'domain'
         verbose_name_plural = "domain"

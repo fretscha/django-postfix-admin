@@ -1,21 +1,37 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from django.views import generic
 
-from .models import Alias, Domain, Log, Mailbox, Vacation
+from braces import views
 
-class DomainListView(ListView):
-    template_name = "domain_list.html"
-    model = Domain
+from . import models
+from . import forms
 
-class AliasListView(ListView):
-    model = Alias
 
-class MailboxListView(ListView):
+class DomainListView(
+    views.LoginRequiredMixin,
+    generic.ListView
+):
+    model = models.Domain
+
+
+class DomainDetailView(
+    views.LoginRequiredMixin,
+    generic.DetailView
+):
+    model = models.Domain
+
+
+class AliasListView(generic.ListView):
+    model = models.Alias
+
+
+class MailboxListView(generic.ListView):
     template_name = "mailbox_list.html"
-    model = Mailbox
+    model = models.Mailbox
 
-class VacationListView(ListView):
-    model = Vacation
 
-class LogListView(ListView):
-    model = Log
+class VacationListView(generic.ListView):
+    model = models.Vacation
+
+
+class LogListView(generic.ListView):
+    model = models.Log
