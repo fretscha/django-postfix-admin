@@ -38,7 +38,6 @@ class LoginView(generic.FormView):
 class LogOutView(views.LoginRequiredMixin,
     views.MessageMixin,
     generic.RedirectView
-
 ):
     url = reverse_lazy('login')
 
