@@ -33,6 +33,7 @@ log_patterns = patterns(
 
 
 urlpatterns = patterns('',
+    url(r'^$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^domain/', include(domain_patterns, namespace='domain')),
     url(r'^alias/', include(alias_patterns, namespace='alias')),
     url(r'^mailbox/', include(mailbox_patterns, namespace='mailbox')),

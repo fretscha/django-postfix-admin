@@ -1,0 +1,35 @@
+{% extends "_layouts/base.html" %}
+{% load filter %}
+
+{% block nav %}
+     <ul class="nav nav-list">
+        <li class="nav-header">action</li>
+        <li id="nav_add"><a href="{% url "domain_create_view" %}">add domain</a></li>
+    </ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div id="breadcrumb" class="col-xs-12">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'pfa:domain:list' %}">Dashboard</a></li>
+        </ol>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    $("#menu_dashboard").attr('class', 'active');
+    $(document).ready(function() {
+
+    $('#clickable_row tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
+});
+{% endblock %}

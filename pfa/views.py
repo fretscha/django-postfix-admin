@@ -5,6 +5,17 @@ from braces import views
 from . import models
 from . import forms
 
+class DashboardView(
+    views.LoginRequiredMixin,
+    generic.TemplateView
+):
+    template_name = "pfa/dashboard.html"
+
+    def get_context_data(self, **kwargs):
+	context = super(DashboardView, self).get_context_data(**kwargs)
+	#context['domain'] = Domain.objects.get(pk=self.kwargs.get('taskid', None))
+	return context
+
 
 class DomainListView(
     views.LoginRequiredMixin,
