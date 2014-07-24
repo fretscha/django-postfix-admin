@@ -1,8 +1,10 @@
--e git+git://github.com/django/django.git@stable/1.7.x#egg=Django
-Unipath
+https://www.djangoproject.com/download/1.7c1/tarball/
+
 django-otp
 django-braces
 django-crispy-forms
+django-floppyforms
 django-filter
+dj_database_url
 djangorestframework
 gunicorn

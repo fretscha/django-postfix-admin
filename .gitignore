@@ -7,13 +7,16 @@
 *.pyc
 *.xml
 *.dump
+*.json
 
 # Can ignore development db
 db.sqlite3
 
-# Can also ignore all directories and files in a directory.
-logs/*
+# ignore local settings as well
+/local.env
 
-static/ajax/
-static/img/
-static/plugins/
+# Folders will be populated when running
+/vmail/
+/postfixadmin/static/**/
+/logs/
+/vmail/
