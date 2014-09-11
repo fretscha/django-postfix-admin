@@ -12,4 +12,3 @@ class DomainForm(forms.ModelForm):
 
     class Mata:
         fields = ('domain', 'mailboxes',)
-
