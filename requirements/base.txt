@@ -1,5 +1,4 @@
-https://www.djangoproject.com/download/1.7c1/tarball/
-
+django
 django-otp
 django-braces
 django-crispy-forms
