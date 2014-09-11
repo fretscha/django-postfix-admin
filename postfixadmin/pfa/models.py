@@ -11,6 +11,12 @@ from django.utils.translation import ugettext as _
 
 import logging
 
+import datetime
+
+
+def now_plus(days=3650):
+    return datetime.now() + datetime.timedelta(days)
+
 logger = logging.getLogger(__name__)
 
 
@@ -25,8 +31,9 @@ class Domain(models.Model):
     transport = models.CharField(
         max_length=8, choices=TRANSPORT_CHOICES, default='virtual')
     backupmx = models.BooleanField(blank=False, default=False)
-    created_on = models.DateTimeField(blank=False, auto_now_add=True)
-    modified_on = models.DateTimeField(blank=False, auto_now=True)
+    created = models.DateTimeField(blank=False, auto_now_add=True)
+    modified = models.DateTimeField(blank=False, auto_now=True)
+    expired = models.DateTimeField(blank=False, default=now_plus())
     active = models.BooleanField(blank=False, default=True)
 
     def __unicode__(self):
