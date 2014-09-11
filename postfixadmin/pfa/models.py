@@ -14,8 +14,8 @@ import logging
 import datetime
 
 
-def now_plus(days=3650):
-    return datetime.now() + datetime.timedelta(days)
+def now_plus(delta_days=3650):
+    return datetime.now() + datetime.timedelta(days=delta_days)
 
 logger = logging.getLogger(__name__)
 
