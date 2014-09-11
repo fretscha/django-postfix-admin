@@ -44,15 +44,18 @@ class Domain(models.Model):
 
 class DomainPerm(models.Model):
     DOMAIN_PERM_CHOICES = [(x, x) for x in ('superuser', 'domadmin', 'user')]
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="domain_perm_user" )
-    domain = models.ForeignKey(Domain, related_name="domain_perm_domain" )
-    type = models.CharField(blank=False, max_length=9, choices=DOMAIN_PERM_CHOICES, default='user')
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, related_name="domain_perm_user")
+    domain = models.ForeignKey(Domain, related_name="domain_perm_domain")
+    type = models.CharField(
+        blank=False, max_length=9, choices=DOMAIN_PERM_CHOICES, default='user')
 
     def __unicode__(self):
         return "{0} is {1} for {2}".format(self.user, self.type, self.domain,)
 
 
 class UserManager(BaseUserManager):
+
     def create_user(self, email, date_of_birth, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -76,9 +79,9 @@ class UserManager(BaseUserManager):
         birth and password.
         """
         user = self.create_user(email,
-            password=password,
-            date_of_birth=date_of_birth
-        )
+                                password=password,
+                                date_of_birth=date_of_birth
+                                )
         user.is_admin = True
         user.save(using=self._db)
         return user
@@ -88,14 +91,14 @@ class User(AbstractBaseUser):
     perms = models.ManyToManyField(DomainPerm, related_name='user_doamin_perm')
     first_name = models.CharField(max_length=32, default='', blank=True)
     last_name = models.CharField(max_length=32, default='', blank=True)
-    email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    email = models.EmailField(
+        verbose_name='email address', max_length=255, unique=True)
     date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     date_joined = models.DateTimeField(blank=False, auto_now_add=True)
-
 
     objects = UserManager()
 
@@ -123,7 +126,6 @@ class User(AbstractBaseUser):
         # Simplest possible answer: Yes, always
         return True
 
-
     def has_module_perms(self, app_label):
         "Does the user have permissions to view the app `app_label`?"
         # Simplest possible answer: Yes, always
@@ -136,12 +138,12 @@ class User(AbstractBaseUser):
         return self.is_admin
 
 
-
 class Mailbox(models.Model):
     domain = models.ForeignKey(Domain, related_name="maiilbox_domain")
     email = models.EmailField(blank=False, max_length=255)
     password = models.CharField(blank=False, max_length=255)
-    maildir = models.CharField(blank=False, max_length=255, default='get_default_maildir()')
+    maildir = models.CharField(
+        blank=False, max_length=255, default='get_default_maildir()')
     quota = models.IntegerField(blank=False, default=0)
     created_on = models.DateTimeField(blank=False, auto_now_add=True)
     modified_on = models.DateTimeField(blank=False, auto_now=True)

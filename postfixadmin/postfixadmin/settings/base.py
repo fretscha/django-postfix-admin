@@ -30,7 +30,8 @@ TEMPLATE_DIRS = (
 
 DATABASES = {
     'default': dj_database_url.config(
-        default="sqlite:///{0}".format(normpath(join(REPO_ROOT, "db", "db.sqlite3")))
+        default="sqlite:///{0}".format(
+            normpath(join(REPO_ROOT, "db", "db.sqlite3")))
     )
 }
 
@@ -132,8 +133,8 @@ STATIC_URL = '/static/'
 FIXTURE_DIRS = ('fixtures', )
 
 # Celery
-BROKER_URL='redis://127.0.0.1:6379/0'
-BROKER_TRANSPORT='redis'
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+BROKER_TRANSPORT = 'redis'
 
 
 LOG_FILENAME = normpath(join(REPO_ROOT, "logs", "debug.log"))

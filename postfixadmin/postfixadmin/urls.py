@@ -8,7 +8,8 @@ from .views import LoginView
 from .views import LogOutView
 
 urlpatterns = [
-    url(r'^$', RedirectView.as_view(url=reverse_lazy('pfa:dashboard'), permanent=True), name='home'),
+    url(r'^$', RedirectView.as_view(
+        url=reverse_lazy('pfa:dashboard'), permanent=True), name='home'),
 
     url(r'^accounts/login/$', LoginView.as_view(), name='login'),
     url(r'^accounts/logout/$', LogOutView.as_view(), name='logout'),
