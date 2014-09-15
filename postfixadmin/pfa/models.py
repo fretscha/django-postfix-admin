@@ -15,7 +15,7 @@ import datetime
 
 
 def now_plus(delta_days=3650):
-    return datetime.now() + datetime.timedelta(days=delta_days)
+    return datetime.datetime.now() + datetime.timedelta(days=delta_days)
 
 logger = logging.getLogger(__name__)
 
@@ -152,8 +152,10 @@ class Mailbox(models.Model):
     maildir = models.CharField(
         blank=False, max_length=255, default='get_default_maildir()')
     quota = models.IntegerField(blank=False, default=0)
-    created_on = models.DateTimeField(blank=False, auto_now_add=True)
-    modified_on = models.DateTimeField(blank=False, auto_now=True)
+    created = models.DateTimeField(blank=False, auto_now_add=True)
+    modified = models.DateTimeField(blank=False, auto_now=True)
+    expired = models.DateTimeField(blank=False, default=now_plus())
+    active = models.BooleanField(blank=False, default=True)
 
     def get_absolute_url(self):
         return reverse('mailbox_detail', kwargs={'pk': self.pk})
@@ -176,8 +178,9 @@ class Alias(models.Model):
     goto = models.CharField(max_length=255)
     domain = models.ForeignKey(
         Domain, blank=False, related_name='alias_domain')
-    created_on = models.DateTimeField(blank=False, auto_now_add=True)
-    modified_on = models.DateTimeField(blank=False, auto_now=True)
+    created = models.DateTimeField(blank=False, auto_now_add=True)
+    modified = models.DateTimeField(blank=False, auto_now=True)
+    expired = models.DateTimeField(blank=False, default=now_plus())
     active = models.BooleanField(blank=False, default=True)
 
     def __unicode__(self):
@@ -215,8 +218,9 @@ class Vacation(models.Model):
     cache = models.CharField(max_length=255)
     domain = models.ForeignKey(
         Domain, blank=False,  related_name='vacation_domain')
-    created_on = models.DateTimeField(blank=False, auto_now_add=True)
-    modified_on = models.DateTimeField(blank=False, auto_now=True)
+    created = models.DateTimeField(blank=False, auto_now_add=True)
+    modified = models.DateTimeField(blank=False, auto_now=True)
+    expired = models.DateTimeField(blank=False, default=now_plus())
     active = models.BooleanField(blank=False, default=True)
 
     def __unicode__(self):
