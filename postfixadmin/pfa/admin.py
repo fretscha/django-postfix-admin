@@ -95,6 +95,7 @@ class UserAdmin(UserAdmin):
     ordering = ('email',)
     filter_horizontal = ()
 
+
 admin.site.unregister(Group)
 
 admin.site.register(models.User, UserAdmin)

@@ -17,9 +17,13 @@ class DashboardView(
         context['domain_count'] = models.Domain.objects.count()
         context['alias_count'] = models.Alias.objects.count()
         context['mailbox_count'] = models.Mailbox.objects.count()
-        context['domain_count'] = models.Domain.objects.count()
-        context['domain_count'] = models.Domain.objects.count()
-        context['domain_count'] = models.Domain.objects.count()
+        # active  vs inacctive
+        # activated vacations
+        #
+        # messages recieved
+        # messages sent
+        # messages rejected
+        # messages quarantained
         return context
 
 
