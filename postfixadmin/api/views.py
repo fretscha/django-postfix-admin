@@ -1,60 +1,71 @@
 # views.py
+from django.http import Http404
+
 from rest_framework import generics
 
 from . import serializer
 from pfa import models
+from rest_framework.permissions import IsAdminUser
 
 
 class UserList(generics.ListAPIView):
-    model = models.User
+    queryset = models.User.objects.all()
     serializer_class = serializer.UserSerializer
+    permission_classes = (IsAdminUser,)
+    paginate_by = 100
 
 
 class DomainListOrCreate(generics.ListCreateAPIView):
-    model = models.Domain
+    queryset = models.Domain.objects.all()
     serializer_class = serializer.DomainSerializer
+    permission_classes = (IsAdminUser,)
+    paginate_by = 100
 
 
 class DomainDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = models.Domain
+    queryset = models.Domain.objects.all()
     serializer_class = serializer.DomainSerializer
 
 
-class AliasListOrCreate(generics.ListCreateAPIView):
-    model = models.Alias
-    serializer_class = serializer.AliasSerializer
-
-
-class AliasDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = models.Alias
-    serializer_class = serializer.AliasSerializer
-
-
 class MailboxListOrCreate(generics.ListCreateAPIView):
-    model = models.Mailbox
+    queryset = models.Mailbox.objects.all()
     serializer_class = serializer.MailboxSerializer
+    permission_classes = (IsAdminUser,)
+    paginate_by = 100
 
 
 class MailboxDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = models.Mailbox
+    queryset = models.Mailbox.objects.all()
     serializer_class = serializer.MailboxSerializer
 
 
+class AliasListOrCreate(generics.ListCreateAPIView):
+    queryset = models.Alias.objects.all()
+    serializer_class = serializer.AliasSerializer
+    permission_classes = (IsAdminUser,)
+    paginate_by = 100
+
+
+class AliasDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Alias.objects.all()
+    serializer_class = serializer.AliasSerializer
+
+
 class VacationListOrCreate(generics.ListCreateAPIView):
-    model = models.Vacation
+    queryset = models.Vacation.objects.all()
     serializer_class = serializer.VacationSerializer
 
 
 class VacationDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = models.Vacation
+    queryset = models.Vacation.objects.all()
     serializer_class = serializer.VacationSerializer
 
 
-class LogListOrCreate(generics.ListCreateAPIView):
-    model = models.Log
+class LogList(generics.ListAPIView):
+    queryset = models.Log.objects.all()
     serializer_class = serializer.LogSerializer
 
 
-class LogDetail(generics.RetrieveUpdateDestroyAPIView):
-    model = models.Log
+class LogDetail(generics.RetrieveAPIView):
+    queryset = models.Log.objects.all()
     serializer_class = serializer.LogSerializer

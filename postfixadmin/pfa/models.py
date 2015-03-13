@@ -150,7 +150,7 @@ class Mailbox(models.Model):
     email = models.EmailField(blank=False, max_length=255)
     password = models.CharField(blank=False, max_length=255)
     maildir = models.CharField(
-        blank=False, max_length=255, default='get_default_maildir()')
+        blank=False, max_length=255, default='never get here')
     quota = models.IntegerField(blank=False, default=0)
     created = models.DateTimeField(blank=False, auto_now_add=True)
     modified = models.DateTimeField(blank=False, auto_now=True)
@@ -160,8 +160,11 @@ class Mailbox(models.Model):
     def get_absolute_url(self):
         return reverse('mailbox_detail', kwargs={'pk': self.pk})
 
-    def get_default_maildir(self):
-        return normpath(join(settings.PFA_DEFAULT_MAILDIR, self.email))
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.maildir = normpath(
+                join(settings.PFA_DEFAULT_MAILDIR, self.email))
+        super(self.__class__, self).save(*args, **kwargs)
 
     def __unicode__(self):
         return "{0}, {1}".format(self.email, self.active)

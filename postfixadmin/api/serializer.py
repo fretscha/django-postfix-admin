@@ -35,8 +35,9 @@ class DomainSerializer(serializers.ModelSerializer):
             'quota',
             'transport',
             'backupmx',
-            'created_on',
-            'modified_on',
+            'created',
+            'modified',
+            'expired',
             'active')
 
 
@@ -49,8 +50,9 @@ class AliasSerializer(serializers.ModelSerializer):
             'address',
             'goto',
             'domain',
-            'created_on',
-            'modified_on',
+            'created',
+            'modified',
+            'expired',
             'active')
 
 
@@ -61,13 +63,13 @@ class MailboxSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'domain',
-            'username',
+            'email',
             'password',
-            'name',
             'maildir',
             'quota',
-            'created_on',
-            'modified_on',
+            'created',
+            'modified',
+            'expired',
             'active')
 
 
